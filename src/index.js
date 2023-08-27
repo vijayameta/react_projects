@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react';
+import { createRoot } from 'react-dom/client';
+import JSON from './db.json';
+import Header from './components/header';
+import NewsList from './components/news_list';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+class App extends Component {
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  state = {
+    news: JSON
+  }
+
+  render() {
+    console.log(this.state.news)
+    return (
+      <div>
+        <Header />
+        <NewsList news={this.state.news} />
+      </div>
+    )
+  }
+};
+
+const root = createRoot(document.getElementById('root'));
+root.render(<App />)
